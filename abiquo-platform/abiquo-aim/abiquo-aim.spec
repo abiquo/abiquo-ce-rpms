@@ -1,8 +1,8 @@
 Name:           abiquo-aim
 BuildRequires:  gcc-c++ thrift-cpp-devel boost-devel curl-devel libvirt-devel 
-Requires:	libvirt
+Requires:	libvirt boost
 Version:        1.6.5
-Release:        3
+Release:        6
 Url:            http://www.abiquo.com/
 License:        BSD(or similar)
 Group:          System/Management
@@ -39,13 +39,29 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %{_sbindir}/abiquo-aim
-%{_sysconfdir}/abiquo-aim.ini
+%config(noreplace) %{_sysconfdir}/abiquo-aim.ini
 %{_sysconfdir}/rc.d/init.d/abiquo-aim
 
 %post
 /sbin/chkconfig --add abiquo-aim
+if ! [ -d /var/lib/virt ]; then
+	mkdir -p /var/lib/virt 
+fi
+if ! [ -d /opt/vm_repository ]; then
+	mkdir -p /opt/vm_repository
+fi
 
 %changelog
+* Thu Sep 09 2010 Sergio Rubio <srubio@abiquo.com> 1.6.5-6
+- create required dirs in post
+- fixes to the init script
+
+* Thu Sep 09 2010 Sergio Rubio <srubio@abiquo.com> 1.6.5-5
+- Require boost
+
+* Thu Sep 09 2010 Sergio Rubio <srubio@abiquo.com> 1.6.5-4
+- Do not replace aim config
+
 * Thu Sep 09 2010 Sergio Rubio <srubio@abiquo.com> 1.6.5-3
 - Added config file
 - Added init script

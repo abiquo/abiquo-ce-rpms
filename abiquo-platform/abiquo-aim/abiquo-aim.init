@@ -21,8 +21,8 @@ start()
     /etc/init.d/libvirtd start
   fi
   
-  echo -n $"Starting Openwsmand daemon: "
-  /usr/sbin/aim
+  echo -n $"Starting AIM daemon: "
+  /usr/sbin/abiquo-aim --config-file /etc/abiquo-aim.ini -d
 
   success
   echo
