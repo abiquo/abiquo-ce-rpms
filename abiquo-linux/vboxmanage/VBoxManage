@@ -1,0 +1,2 @@
+#!/bin/sh
+PATH=$PATH:/opt/virtualbox-ose-headless LD_LIBRARY_PATH=/opt/virtualbox-ose-headless/ /opt/virtualbox-ose-headless/VBoxManage $@
