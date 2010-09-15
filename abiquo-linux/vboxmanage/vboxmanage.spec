@@ -1,13 +1,13 @@
 Name:     vboxmanage
 Version:  3.1.8
-Release:  1.abiquo%{?buildstamp}
+Release:  1.abiquo
 Summary:  VirtualBox VBoxManage Command
 Group:    Development/System 
 License:  Multiple 
 URL:      http://www.virtualbox.org
 Source:  VirtualBox-%{version}-OSE.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: iasl dev86 libxml2-devel libxslt-devel libIDL-devel hal-devel curl-devel dev86 libcap-devel glibc-devel libstdc++-devel
+BuildRequires: iasl dev86 libxml2-devel libxslt-devel libIDL-devel hal-devel curl-devel dev86 libcap-devel glibc-devel libstdc++-devel libpng-devel libXmu-devel libX11-devel mesa-libGL-devel libXrandr-devel
 Patch1:  no-curl-detect.diff
 Source1: VBoxManage
 
@@ -22,7 +22,6 @@ if [ $? -ne 0 ]; then
   exit $?
 fi
 cd VirtualBox-%{version}_OSE
-chown -R root.root .
 chmod -R a+rX,g-w,o-w .
 
 %patch1 -p1
@@ -41,9 +40,11 @@ mkdir -p $RPM_BUILD_ROOT/opt
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 cp -r $RPM_BUILD_DIR/VirtualBox-%{version}_OSE/out/linux.amd64/release/bin $RPM_BUILD_ROOT/opt/vboxmanage
 cp %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}/VBoxManage
-/bin/chmod +x $RPM_BUILD_ROOT/%{_bindir}/VBoxManage
-/usr/bin/chcon -t texrel_shlib_t *.so $RPM_BUILD_ROOT/opt/vboxmanage/components/*.so
-/bin/chmod 4511 $RPM_BUILD_ROOT/opt/vboxmanage/VBoxManage
+
+%post
+/bin/chmod +x %{_bindir}/VBoxManage
+/usr/bin/chcon -t texrel_shlib_t /opt/vboxmanage/*.so /opt/vboxmanage/components/*.so
+/bin/chmod 4511 /opt/vboxmanage/VBoxManage
 
 %clean
 rm -rf $RPM_BUILD_ROOT
