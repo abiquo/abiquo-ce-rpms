@@ -2,7 +2,7 @@ Name:           abiquo-aim
 BuildRequires:  gcc-c++ thrift-cpp-devel boost-devel curl-devel libvirt-devel 
 Requires:	libvirt boost
 Version:        1.6.5
-Release:        7.rel1.0
+Release:        8.rel1.0
 Url:            http://www.abiquo.com/
 License:        BSD(or similar)
 Group:          System/Management
@@ -52,6 +52,9 @@ if ! [ -d /opt/vm_repository ]; then
 fi
 
 %changelog
+* Thu Sep 16 2010 Sergio Rubio <srubio@abiquo.com> 1.6.5-8.rel1.0
+- Updated aim init script
+
 * Fri Sep 10 2010 Sergio Rubio <srubio@abiquo.com> 1.6.5-7.rel1.0
 - Update aim source
 

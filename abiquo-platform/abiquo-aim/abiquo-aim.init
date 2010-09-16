@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# chkconfig: 2345 36 64
+# chkconfig: 2345 99 99
 # description: Starts the required Abiquo AIM daemons
 #
 # Source function library.
