@@ -1,7 +1,7 @@
 Summary: redis
 Name: redis
 Version: 2.0.2
-Release: 2
+Release: 3 
 License: BSD
 Group: Applications/Multimedia
 URL: http://code.google.com/p/redis/
@@ -96,6 +96,9 @@ fi
 %dir %attr(0755,redis,redis) %{_localstatedir}/log/redis
 
 %changelog
+* Tue Oct 06 2010 - Sergio Rubio <srubio@abiquo.com> 2.0.2-3
+- update redis.conf
+
 * Tue Oct 06 2010 - Sergio Rubio <srubio@abiquo.com> 2.0.2-2
 - replace default redis.conf
 
