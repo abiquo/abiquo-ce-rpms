@@ -1,5 +1,5 @@
 SIGN_PKGS=0
-MOCK_PROFILE=centos-5.5-x86_64
+MOCK_PROFILE=abiquo-1.6.8
 PKG_NAME=abiquo-aim
 BUILDBASE=~/rpmbuild
 

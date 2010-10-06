@@ -1,8 +1,8 @@
 Name:           abiquo-aim
-BuildRequires:  gcc-c++ thrift-cpp-devel boost-devel curl-devel libvirt-devel 
-Requires:	libvirt boost
-Version:        1.6.5
-Release:        8.rel1.0
+BuildRequires:  hiredis gcc-c++ thrift-cpp-devel boost-devel curl-devel libvirt-devel 
+Requires:	libvirt hiredis boost
+Version:        1.6.8
+Release:        1.rel1.1
 Url:            http://www.abiquo.com/
 License:        BSD(or similar)
 Group:          System/Management
@@ -24,7 +24,7 @@ Authors:
 %setup -q
 
 %build
-CPATH=/usr/include/thrift make
+CPATH="/usr/include/thrift:/usr/include/hiredis" make
 
 %install
 mkdir -p $RPM_BUILD_ROOT/%{_sbindir}/
@@ -52,6 +52,9 @@ if ! [ -d /opt/vm_repository ]; then
 fi
 
 %changelog
+* Thu Sep 16 2010 Sergio Rubio <srubio@abiquo.com> 1.6.8-1.rel1.1
+- Updated to upstream 1.1
+
 * Thu Sep 16 2010 Sergio Rubio <srubio@abiquo.com> 1.6.5-8.rel1.0
 - Updated aim init script
 
